@@ -37,15 +37,18 @@ select:focus { outline: none; border-color: #4A7FA5; }
 .gantt-table { border-collapse: collapse; white-space: nowrap; }
 .gantt-table th, .gantt-table td { padding: 0; border: none; }
 .g-name-h { width: 175px; min-width: 175px; padding: 7px 12px; font-size: 10px; font-weight: 700; color: #4a5568; background: #f8fafc; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; position: sticky; left: 0; z-index: 20; text-align: left; }
-.g-dept-h { width: 55px; min-width: 55px; padding: 7px 6px; font-size: 10px; font-weight: 700; color: #4a5568; background: #f8fafc; border-right: 2px solid #c7d4e0; border-bottom: 1px solid #e2e8f0; position: sticky; left: 175px; z-index: 20; text-align: left; }
+.g-dept-h { width: 52px; min-width: 52px; padding: 7px 6px; font-size: 10px; font-weight: 700; color: #4a5568; background: #f8fafc; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; position: sticky; left: 175px; z-index: 20; text-align: center; }
+.g-rem-h  { width: 34px; min-width: 34px; padding: 7px 4px; font-size: 10px; font-weight: 700; color: #4a5568; background: #f8fafc; border-right: 2px solid #c7d4e0; border-bottom: 1px solid #e2e8f0; position: sticky; left: 227px; z-index: 20; text-align: center; }
 .g-month-h { text-align: center; font-size: 10px; font-weight: 700; color: #4a5568; background: #f8fafc; border-right: 2px solid #c7d4e0; border-bottom: 1px solid #e2e8f0; padding: 4px 0; }
 .g-day-h { font-size: 7px; color: #c0c8d4; text-align: center; background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 2px 0; width: 13px; min-width: 13px; }
 .g-day-h.wk { color: #e07b39; }
-.g-name { padding: 1px 12px; font-size: 11px; color: #2d3748; background: #fff; border-right: 1px solid #e2e8f0; position: sticky; left: 0; z-index: 5; height: 19px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 175px; line-height: 19px; }
-.g-dept { padding: 0 5px; font-size: 9px; font-weight: 700; color: #fff; border-right: 2px solid #c7d4e0; position: sticky; left: 175px; z-index: 5; height: 19px; line-height: 19px; }
-.g-cell { width: 13px; min-width: 13px; height: 19px; border-right: 1px solid #f0f4f8; }
+.g-name { padding: 0 10px; font-size: 11px; color: #2d3748; background: #fff; border-right: 1px solid #e2e8f0; position: sticky; left: 0; z-index: 5; height: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 175px; line-height: 22px; }
+.g-dept { padding: 0 4px; font-size: 9px; font-weight: 700; color: #fff; border-right: 1px solid rgba(255,255,255,0.3); position: sticky; left: 175px; z-index: 5; height: 22px; line-height: 22px; text-align: center; }
+.g-rem  { padding: 0 3px; font-size: 9px; font-weight: 700; border-right: 2px solid #c7d4e0; position: sticky; left: 227px; z-index: 5; height: 22px; line-height: 22px; text-align: center; background: #fff; }
+.g-cell { width: 13px; min-width: 13px; height: 22px; border-right: 1px solid #f0f4f8; }
 .g-cell.mon-end { border-right: 2px solid #c7d4e0; }
 .g-row:nth-child(even) .g-name { background: #fafbfc; }
+.g-row:nth-child(even) .g-rem  { background: #fafbfc; }
 .dept-sep td, .dept-sep th { border-top: 2px solid #cbd5e0 !important; }
 
 .cal-grid-outer { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
@@ -92,7 +95,7 @@ select:focus { outline: none; border-color: #4A7FA5; }
 <header>
   <div>
     <h1>PTO Dashboard 2026</h1>
-    <div class="subtitle">King of Time sync — 76 employees, individual leave days</div>
+    <div class="subtitle">King of Time sync — 76 employees, individual leave days · Updated 2026-06-02</div>
   </div>
   <div style="font-size:11px;color:#718096" id="lastUpdate"></div>
 </header>
@@ -234,7 +237,7 @@ const GROUP_COLORS = {'kyoto':'#4A7FA5','110':'#E07B39','116':'#7B5EA7','200':'#
 const GROUP_NAMES  = {'kyoto':'Kyoto','110':'Osaka','116':'Tokyo Ops','200':'People','300':'Finance','400':'Marketing','500':'Technology','700':'Revenue','800':'TXP'};
 const MONTHS = [{m:1,name:'Jan',days:31},{m:2,name:'Feb',days:28},{m:3,name:'Mar',days:31},{m:4,name:'Apr',days:30},{m:5,name:'May',days:31},{m:6,name:'Jun',days:30},{m:7,name:'Jul',days:31},{m:8,name:'Aug',days:31},{m:9,name:'Sep',days:30},{m:10,name:'Oct',days:31},{m:11,name:'Nov',days:30},{m:12,name:'Dec',days:31}];
 const DOW_JP = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-const TODAY = '2026-06-01';
+const TODAY = '2026-06-02';
 const FY26_START = '2026-04-01';
 const DEPT_SHORT = {'101':'KOps','102':'KOps','103':'KCrd','105':'WHKS','106':'K-03','107':'K-04','110':'OSK','112':'KRFT','114':'K-10','115':'K-11','116':'TKO','200':'PPL','300':'FIN','400':'MKT','500':'TECH','700':'REV','800':'TXP'};
 // Remaining PTO balance from KOT (as of 2026-06-02, FY2026) — 締め日時点の残日数
@@ -285,10 +288,10 @@ function renderKPI(emps){
 function renderGantt(emps){
   const mos = monthFilter>0 ? MONTHS.filter(mo=>mo.m===monthFilter) : MONTHS;
   let h='<div class="gantt-wrap"><table class="gantt-table"><thead><tr>';
-  h+=`<th class="g-name-h">Name</th><th class="g-dept-h">Dept</th>`;
+  h+=`<th class="g-name-h">Name</th><th class="g-dept-h">Dept</th><th class="g-rem-h">残</th>`;
   for(const mo of mos) h+=`<th class="g-month-h" colspan="${mo.days}">${mo.name}</th>`;
   h+='</tr><tr>';
-  h+=`<th class="g-name-h" style="border-bottom:1px solid #e2e8f0"></th><th class="g-dept-h" style="border-bottom:1px solid #e2e8f0"></th>`;
+  h+=`<th class="g-name-h" style="border-bottom:1px solid #e2e8f0"></th><th class="g-dept-h" style="border-bottom:1px solid #e2e8f0"></th><th class="g-rem-h" style="border-bottom:1px solid #e2e8f0"></th>`;
   for(const mo of mos){
     for(let d=1;d<=mo.days;d++){
       const dow=new Date(2026,mo.m-1,d).getDay();
@@ -303,17 +306,21 @@ function renderGantt(emps){
     const dset=new Set(emp.dates);
     const sep=(emp.g!==lastG&&lastG!==null)?' dept-sep':'';
     lastG=emp.g;
-    const codeTag = emp.code ? `<span style="color:#a0aec0;font-size:9px;margin-right:4px">${emp.code}</span>` : '';
     const r=remain(emp); const ex=expire(emp); const kt=kotTaken(emp);
-    const rTag=r!==null?`<span style="margin-left:auto;font-size:8px;font-weight:700;color:#fff;background:${remainCls(r)};border-radius:3px;padding:0 3px;line-height:13px">${r}d</span>`:'';
-    const tip=`${emp.name} — 今年取得: ${kt!==null?kt:'?'}d / 残: ${r!==null?r:'?'}d${ex?` / 失効予定: ${ex}d`:''}`;
-    h+=`<tr class="g-row${sep}"><td class="g-name" title="${tip}" style="display:flex;align-items:center">${codeTag}${emp.name}${rTag}</td><td class="g-dept" style="background:${c}">${DEPT_SHORT[emp.dc]||emp.dc}</td>`;
+    const tip=`${emp.name} (${emp.code}) — 今年取得: ${kt!==null?kt:'?'}d / 残: ${r!==null?r:'?'}d${ex?` / 失効予定: ${ex}d`:''}`;
+    const remColor=remainCls(r);
+    const remTxt=r!==null?r:'—';
+    const remStyle=r!==null?`color:${r===0?'#e53e3e':r<=3?'#c05621':r<=7?'#744210':'#276749'};font-weight:700`:`color:#cbd5e0`;
+    h+=`<tr class="g-row${sep}">`;
+    h+=`<td class="g-name" title="${tip}"><span style="color:#b0bec5;font-size:9px;margin-right:5px">${emp.code||''}</span>${emp.name}</td>`;
+    h+=`<td class="g-dept" style="background:${c}">${DEPT_SHORT[emp.dc]||emp.dc}</td>`;
+    h+=`<td class="g-rem" style="${remStyle}">${remTxt}</td>`;
     for(const mo of mos){
       for(let d=1;d<=mo.days;d++){
         const key=ds(mo.m,d);
         const on=dset.has(key);
         const end=d===mo.days;
-        h+=`<td class="g-cell${end?' mon-end':''}" style="${on?`background:${c};opacity:0.82`:''}"></td>`;
+        h+=`<td class="g-cell${end?' mon-end':''}" style="${on?`background:${c}`:''}"></td>`;
       }
     }
     h+='</tr>';
